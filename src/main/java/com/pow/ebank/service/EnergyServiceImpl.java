@@ -43,7 +43,7 @@ public class EnergyServiceImpl implements EnergyService{
                     .map(this::convertToDto)
                     .collect(Collectors.toCollection(ArrayList::new));
 
-        } catch (JpaSystemException e){
+        } catch (JDBCException e){
             log.error("Something went wrong when saving battery details {} ", e);
             throw new RuntimeException("Something went wrong when saving battery details");
         }
@@ -84,9 +84,9 @@ public class EnergyServiceImpl implements EnergyService{
                     .averageWattCapacity(BigDecimal.valueOf(summaryStatistics.getAverage()))
                     .totalWattCapacity(BigDecimal.valueOf(summaryStatistics.getSum()))
                     .build());
-        } catch (JpaSystemException e){
+        } catch (JDBCException e){
             log.error("Error processing battery details");
-        }
+        } 
         return Optional.empty();
     }
 
