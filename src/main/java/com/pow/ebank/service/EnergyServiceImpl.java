@@ -12,6 +12,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.orm.jpa.JpaSystemException;
 import org.springframework.stereotype.Service;
 import org.springframework.util.StringUtils;
+import org.hibernate.JDBCException;
 
 import java.math.BigDecimal;
 import java.util.*;
