@@ -17,10 +17,10 @@ public class ControllerExceptionHandler extends ResponseEntityExceptionHandler {
         log.error("Required input fields are empty {}", e);
         return new ResponseEntity<String>("Required input fields are empty", HttpStatus.BAD_REQUEST);
     }
-
+    
     @ExceptionHandler(ValueNotFoundException.class)
-    public ResponseEntity<String> handleAllException(ValueNotFoundException e){
+    public ResponseEntity<String> handleNotFoundException(ValueNotFoundException e){
         log.error("Required input fields are empty {}", e);
-        return new ResponseEntity<String>("Required input fields are empty", HttpStatus.BAD_REQUEST);
+        return new ResponseEntity<String>("Value not found", HttpStatus.NOT_FOUND);
     }
 }
