@@ -23,4 +23,16 @@ public class ControllerExceptionHandler extends ResponseEntityExceptionHandler {
         log.error("Required input fields are empty {}", e);
         return new ResponseEntity<String>("Value not found", HttpStatus.NOT_FOUND);
     }
+    
+    @ExceptionHandler(ConstraintViolationException.class)
+    public ResponseEntity<String> handleDuplicateRecodeException(ConstraintViolationException e){
+        log.error("Recode already exist {}", e);
+        return new ResponseEntity<String>("Recode already exist", HttpStatus.ALREADY_REPORTED);
+    }
+
+    @ExceptionHandler(JDBCException.class)
+    public ResponseEntity<String> handleJdbcException(JDBCException e){
+        log.error("Error processing data with database {}", e);
+        return new ResponseEntity<String>("Data processing error", HttpStatus.ALREADY_REPORTED);
+    }
 }
