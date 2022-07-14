@@ -84,7 +84,7 @@ public class EnergyServiceImpl implements EnergyService{
                     .averageWattCapacity(BigDecimal.valueOf(summaryStatistics.getAverage()))
                     .totalWattCapacity(BigDecimal.valueOf(summaryStatistics.getSum()))
                     .build());
-        } catch (Exception e){
+        } catch (JpaSystemException e){
             log.error("Error processing battery details");
         }
         return Optional.empty();
