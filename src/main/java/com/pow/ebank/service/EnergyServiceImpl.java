@@ -13,6 +13,7 @@ import org.springframework.orm.jpa.JpaSystemException;
 import org.springframework.stereotype.Service;
 import org.springframework.util.StringUtils;
 import org.hibernate.JDBCException;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.math.BigDecimal;
 import java.util.*;
@@ -26,6 +27,7 @@ public class EnergyServiceImpl implements EnergyService{
     private BatteryRepository batteryRepository;
 
     @Override
+    @Transactional
     public List<BatteryDTO> save(List<BatteryDTO> batteries) {
         List<BatteryDTO> result = new ArrayList<>();
         List<Battery> batteryList = batteries.stream()
