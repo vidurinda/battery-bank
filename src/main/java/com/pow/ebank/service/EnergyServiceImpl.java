@@ -30,6 +30,7 @@ public class EnergyServiceImpl implements EnergyService{
     @Transactional
     public List<BatteryDTO> save(List<BatteryDTO> batteries) {
         List<BatteryDTO> result = new ArrayList<>();
+        List<Battery> addedBatteries = new ArrayList<>();
         List<Battery> batteryList = batteries.stream()
                 .peek(batteryDTO -> {
                     if(StringUtils.isEmpty(batteryDTO.getName()) || StringUtils.isEmpty(batteryDTO.getPostCode())){
@@ -40,9 +41,9 @@ public class EnergyServiceImpl implements EnergyService{
         try {
 
             Iterable<Battery> batteryIterable = batteryRepository.saveAll(batteryList);
-            batteryIterable.forEach(batteryList::add);
+            batteryIterable.forEach(addedBatteries::add);
 
-            return batteryList.stream()
+            return addedBatteries.stream()
                     .map(this::convertToDto)
                     .collect(Collectors.toCollection(ArrayList::new));
 
